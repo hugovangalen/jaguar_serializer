@@ -8,7 +8,7 @@ import "codec.dart";
 ///
 /// Same usage as [SerializerRepo]
 class JsonRepo extends SerializerRepoImpl implements CodecRepo<String> {
-  JsonRepo({List<Serializer> serializers}) : super(serializers: serializers);
+  JsonRepo({List<Serializer>? serializers}) : super(serializers: serializers);
 
   ///@nodoc
   /// use [serialize]
@@ -20,7 +20,7 @@ class JsonRepo extends SerializerRepoImpl implements CodecRepo<String> {
 
   ///@nodoc
   /// use [deserialize]
-  T decodeOne<T>(String object) => oneFrom<T>(json.decode(object));
+  T? decodeOne<T>(String object) => oneFrom<T>(json.decode(object));
 
   ///@nodoc
   /// use [deserialize]

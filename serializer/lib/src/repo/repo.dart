@@ -20,19 +20,19 @@ part 'impl.dart';
 ///     List<User> users = repository.deserialize(list, type: User);
 abstract class SerializerRepo {
   /// Deserializes [object] to [T]
-  T oneFrom<T>(dynamic object);
+  T? oneFrom<T>(dynamic object);
 
   /// Deserializes [object] ([List<dynamic>]) to [List<T>]
-  List<T> listFrom<T>(List object);
+  List<T>? listFrom<T>(List object);
 
-  Map<String, T> mapFrom<T>(Map<String, dynamic> object);
+  Map<String, T>? mapFrom<T>(Map<String, dynamic> object);
 
   /// Deserializes Dart built-in object to Dart PODO
-  dynamic from<T>(dynamic object);
+  dynamic? from<T>(dynamic object);
 
   /// Serializes [object] to Dart built-in type
-  dynamic to(dynamic object);
+  dynamic? to(dynamic object);
 
   /// Return a [Serializer] for a Type
-  Serializer<T> getByType<T>(Type type);
+  Serializer<T>? getByType<T>(Type type);
 }
