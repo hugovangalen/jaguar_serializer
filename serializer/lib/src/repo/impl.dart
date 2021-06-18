@@ -58,8 +58,11 @@ class SerializerRepoImpl implements SerializerRepo {
   List<T> listFrom<T>(List object) {
     Serializer<T>? ser = getByType(T);
     final ret = List<T>.empty(growable:true);// object.length );
-    for (int i = 0; i < object.length; i++)
-      ret[i] = _deserializeOne(object[i], ser!);
+    for (int i = 0; i < object.length; i++) {
+      T? tmp = _deserializeOne(object[i], ser!);
+      if (tmp != null)
+        ret[i] = tmp;
+    }
     return ret;
   }
 
@@ -69,7 +72,7 @@ class SerializerRepoImpl implements SerializerRepo {
     return from<T>(object) as Map<String, T>;
   }
 
-  T _deserializeOne<T>(dynamic object, Serializer<T>? ser) {
+  T? _deserializeOne<T>(dynamic object, Serializer<T>? ser) {
     if (object is String || object is num || object is bool || object == null)
       return object as T;
 
